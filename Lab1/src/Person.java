@@ -40,5 +40,13 @@ class Person {
     return this.lastName;
   }
 
+  /**
+   * Return the year of birth of this person.
+   *
+   * @return the year of birth of this person
+   */
+  public int getYearOfBirth() {
+    return this.yearOfBirth;
+  }
 }
 
