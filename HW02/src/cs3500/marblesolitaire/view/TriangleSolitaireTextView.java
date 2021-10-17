@@ -5,11 +5,9 @@ import java.io.IOException;
 import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
 
 /**
- * This class visualize the game state of a regular MarbleSolitaire (English/European) in a text
- * form.
+ * This class visualize the game state of a triangular MarbleSolitaire in a text form.
  */
-public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
-
+public class TriangleSolitaireTextView extends AbstractMarbleSolitaireView{
   /**
    * Construct a visualized MarbleSolitaireModelState, with  the default {@code System.out} as the
    * out destination.
@@ -17,7 +15,7 @@ public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
    * @param ms a MarbleSolitaireModelState object
    * @throws IllegalArgumentException when the MarbleSolitaireModelState is null
    */
-  public MarbleSolitaireTextView(MarbleSolitaireModelState ms) throws IllegalArgumentException {
+  public TriangleSolitaireTextView(MarbleSolitaireModelState ms) {
     super(ms);
   }
 
@@ -29,9 +27,9 @@ public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
    * @param destination an Appendable object that is going to be set as the out destination
    * @throws IllegalArgumentException when either the destination or the ms is null
    */
-  public MarbleSolitaireTextView(MarbleSolitaireModelState ms, Appendable destination)
+  public TriangleSolitaireTextView(MarbleSolitaireModelState ms, Appendable destination)
           throws IllegalArgumentException {
-    super(ms,destination);
+    super(ms, destination);
   }
 
   /**
@@ -45,11 +43,13 @@ public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
   @Override
   public String toString() {
     String s = "";
-    int sideLength = super.ms.getBoardSize();
-    int head = (sideLength + 2) / 3 - 1;
-    int tail = 2 * head;
-    for (int i = 0; i < sideLength; i++) {
-      for (int j = 0; j < sideLength; j++) {
+    int height = super.ms.getBoardSize();
+
+    for (int i = 0; i < height; i++) {
+      for(int k = 0; k < height - 1 - i; k++) {
+        s += " ";
+      }
+      for (int j = 0; j <= i; j++) {
         MarbleSolitaireModelState.SlotState state = super.ms.getSlotAt(i, j);
         switch (state) {
           case Empty:
@@ -59,12 +59,11 @@ public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
             s += "O";
             break;
           default:
-            s += (j > tail) ? "" : " ";
             break;
         }
-        s += (i < head && j >= tail || i > tail && j >= tail || j == sideLength - 1) ? "" : " ";
+        s += (j == i) ? "" : " ";
       }
-      s += (i == sideLength - 1) ? "" : "\n";
+      s += (i == height - 1) ? "" : "\n";
     }
     return s;
   }

@@ -11,7 +11,7 @@ import cs3500.marblesolitaire.view.MarbleSolitaireTextView;
 
 public class Mainrun {
   public static void main(String[] args) {
-    MarbleSolitaireModel mm = new EnglishSolitaireModel();
+    MarbleSolitaireModel mm = new EnglishSolitaireModel(5,6,6);
     MarbleSolitaireControllerImpl game = new MarbleSolitaireControllerImpl(mm,
             new MarbleSolitaireTextView(mm), new BufferedReader(new InputStreamReader(System.in)));
     game.playGame();
