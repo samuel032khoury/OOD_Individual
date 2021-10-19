@@ -1,16 +1,14 @@
 package cs3500.marblesolitaire.view;
 
-import java.io.IOException;
-
 import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
 
 /**
  * This class visualize the game state of a triangular MarbleSolitaire in a text form.
  */
-public class TriangleSolitaireTextView extends AbstractMarbleSolitaireView{
+public class TriangleSolitaireTextView extends AbstractMarbleSolitaireView {
   /**
-   * Construct a visualized MarbleSolitaireModelState, with  the default {@code System.out} as the
-   * out destination.
+   * Construct a visualized {@link MarbleSolitaireModelState}, with  the default {@code System.out}
+   * as the out destination.
    *
    * @param ms a MarbleSolitaireModelState object
    * @throws IllegalArgumentException when the MarbleSolitaireModelState is null
@@ -46,7 +44,7 @@ public class TriangleSolitaireTextView extends AbstractMarbleSolitaireView{
     int height = super.ms.getBoardSize();
 
     for (int i = 0; i < height; i++) {
-      for(int k = 0; k < height - 1 - i; k++) {
+      for (int k = 0; k < height - 1 - i; k++) {
         s += " ";
       }
       for (int j = 0; j <= i; j++) {

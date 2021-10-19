@@ -4,7 +4,11 @@ import java.io.IOException;
 
 import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
 
-public abstract class AbstractMarbleSolitaireView implements MarbleSolitaireView{
+/**
+ * This abstract class represents operations that should be offered by a view for the Marble
+ * solitaire game.
+ */
+public abstract class AbstractMarbleSolitaireView implements MarbleSolitaireView {
   protected final MarbleSolitaireModelState ms;
   protected final Appendable destination;
 
@@ -15,7 +19,7 @@ public abstract class AbstractMarbleSolitaireView implements MarbleSolitaireView
    * @param ms a MarbleSolitaireModelState object
    * @throws IllegalArgumentException when the MarbleSolitaireModelState is null
    */
-  public AbstractMarbleSolitaireView (MarbleSolitaireModelState ms)
+  public AbstractMarbleSolitaireView(MarbleSolitaireModelState ms)
           throws IllegalArgumentException {
     if (ms == null) {
       throw new IllegalArgumentException();
@@ -32,7 +36,7 @@ public abstract class AbstractMarbleSolitaireView implements MarbleSolitaireView
    * @param destination an Appendable object that is going to be set as the out destination
    * @throws IllegalArgumentException when either the destination or the ms is null
    */
-  public AbstractMarbleSolitaireView (MarbleSolitaireModelState ms, Appendable destination)
+  public AbstractMarbleSolitaireView(MarbleSolitaireModelState ms, Appendable destination)
           throws IllegalArgumentException {
     if (ms == null || destination == null) {
       throw new IllegalArgumentException();

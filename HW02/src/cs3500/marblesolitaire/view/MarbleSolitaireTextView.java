@@ -1,7 +1,5 @@
 package cs3500.marblesolitaire.view;
 
-import java.io.IOException;
-
 import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModelState;
 
 /**
@@ -45,11 +43,9 @@ public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
   @Override
   public String toString() {
     String s = "";
-    int sideLength = super.ms.getBoardSize();
-    int head = (sideLength + 2) / 3 - 1;
-    int tail = 2 * head;
-    for (int i = 0; i < sideLength; i++) {
-      for (int j = 0; j < sideLength; j++) {
+    int span = super.ms.getBoardSize();
+    for (int i = 0; i < span; i++) {
+      for (int j = 0; j < span; j++) {
         MarbleSolitaireModelState.SlotState state = super.ms.getSlotAt(i, j);
         switch (state) {
           case Empty:
@@ -59,12 +55,13 @@ public class MarbleSolitaireTextView extends AbstractMarbleSolitaireView {
             s += "O";
             break;
           default:
-            s += (j > tail) ? "" : " ";
+            s += " ";
             break;
         }
-        s += (i < head && j >= tail || i > tail && j >= tail || j == sideLength - 1) ? "" : " ";
+        s += " ";
       }
-      s += (i == sideLength - 1) ? "" : "\n";
+      s = s.substring(0, Math.max(s.lastIndexOf("_"), s.lastIndexOf("O")) + 1);
+      s += (i == span - 1) ? "" : "\n";
     }
     return s;
   }
