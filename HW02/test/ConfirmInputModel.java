@@ -9,7 +9,7 @@ public class ConfirmInputModel implements MarbleSolitaireModel {
   final StringBuilder log;
 
   /**
-   * Generate a confim Input model for testing the correctness of input.
+   * Generate a confirm Input model for testing the correctness of input.
    * @param log a StringBuilder to store the input log
    */
   public ConfirmInputModel(StringBuilder log) {

@@ -4,7 +4,12 @@ import org.junit.Test;
 import java.io.IOException;
 
 import cs3500.marblesolitaire.model.hw02.EnglishSolitaireModel;
+import cs3500.marblesolitaire.model.hw02.MarbleSolitaireModel;
+import cs3500.marblesolitaire.model.hw04.EuropeanSolitaireModel;
+import cs3500.marblesolitaire.model.hw04.TriangleSolitaireModel;
 import cs3500.marblesolitaire.view.MarbleSolitaireTextView;
+import cs3500.marblesolitaire.view.MarbleSolitaireView;
+import cs3500.marblesolitaire.view.TriangleSolitaireTextView;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,26 +17,53 @@ import static org.junit.Assert.assertEquals;
  * To test instances of MarbleSolitaireTextView.
  */
 public class MarbleSolitaireTextViewTest {
-  private EnglishSolitaireModel model1;
-  private MarbleSolitaireTextView view1;
-  private MarbleSolitaireTextView view2;
-  private MarbleSolitaireTextView customizedEmptyModel;
+  private MarbleSolitaireModel englishModel;
+  private MarbleSolitaireModel europeanModel;
+  private MarbleSolitaireModel triangleModel;
 
-  Appendable outputForViewWSB;
-  private MarbleSolitaireTextView viewWithStringBuilder;
+  private MarbleSolitaireView englishView;
+  private MarbleSolitaireView europeanView;
+  private MarbleSolitaireView triangleView;
+
+  private MarbleSolitaireView biggerEnglishView;
+  private MarbleSolitaireView biggerEuropeanView;
+  private MarbleSolitaireView biggerTriangleView;
+
+  private MarbleSolitaireView customizedEmptyEnglishView;
+  private MarbleSolitaireView customizedEmptyTriangleView;
+
+  Appendable outputStringBuilder;
+  private MarbleSolitaireView viewWithStringBuilder;
 
   @Before
   public void setUp() {
-    this.model1 = new EnglishSolitaireModel();
-    this.view1 = new MarbleSolitaireTextView(this.model1);
-    this.view2 = new MarbleSolitaireTextView(new EnglishSolitaireModel(7));
-    this.customizedEmptyModel = new MarbleSolitaireTextView(new EnglishSolitaireModel(3, 4, 2));
+    this.englishModel = new EnglishSolitaireModel();
+    this.europeanModel = new EuropeanSolitaireModel();
+    this.triangleModel = new TriangleSolitaireModel();
 
-    this.outputForViewWSB = new StringBuilder();
-    this.viewWithStringBuilder = new MarbleSolitaireTextView(this.model1, outputForViewWSB);
+    this.englishView = new MarbleSolitaireTextView(this.englishModel);
+    this.europeanView = new MarbleSolitaireTextView(this.europeanModel);
+    this.triangleView = new TriangleSolitaireTextView(this.triangleModel);
+
+    MarbleSolitaireModel biggerEnglishModel = new EnglishSolitaireModel(7);
+    MarbleSolitaireModel biggerEuropeanModel = new EuropeanSolitaireModel(7);
+    MarbleSolitaireModel biggerTriangleModel = new TriangleSolitaireModel(7);
+
+    this.biggerEnglishView = new MarbleSolitaireTextView(biggerEnglishModel);
+    this.biggerEuropeanView = new MarbleSolitaireTextView(biggerEuropeanModel);
+    this.biggerTriangleView = new TriangleSolitaireTextView(biggerTriangleModel);
+
+    MarbleSolitaireModel customizedEmptyEnglishModel = new EnglishSolitaireModel(4, 2);
+    MarbleSolitaireModel customizedEmptyTriangleModel = new TriangleSolitaireModel(3, 3);
+
+    this.customizedEmptyEnglishView = new MarbleSolitaireTextView(customizedEmptyEnglishModel);
+    this.customizedEmptyTriangleView =
+            new TriangleSolitaireTextView(customizedEmptyTriangleModel);
+
+    this.outputStringBuilder = new StringBuilder();
+    this.viewWithStringBuilder = new MarbleSolitaireTextView(this.englishModel,
+            outputStringBuilder);
   }
-  //TODO: testRenderMessage
-  //TODO: testRenderBoard
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructException1() {
@@ -40,65 +72,142 @@ public class MarbleSolitaireTextViewTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testConstructException2() {
-    new MarbleSolitaireTextView(model1, null);
+    new MarbleSolitaireTextView(englishModel, null);
   }
 
   @Test
   public void testToString() {
-    String model1ToString =
+    String englishModelToString =
             "    O O O\n"
-                    + "    O O O\n"
-                    + "O O O O O O O\n"
-                    + "O O O _ O O O\n"
-                    + "O O O O O O O\n"
-                    + "    O O O\n"
-                    + "    O O O";
-    assertEquals(model1ToString, view1.toString());
+          + "    O O O\n"
+          + "O O O O O O O\n"
+          + "O O O _ O O O\n"
+          + "O O O O O O O\n"
+          + "    O O O\n"
+          + "    O O O";
+    assertEquals(englishModelToString, englishView.toString());
 
-    model1.move(3, 1, 3, 3);
-    String model1ToStringAfterMove =
+    englishModel.move(3, 1, 3, 3);
+    String englishModelToStringAfterMove =
             "    O O O\n"
-                    + "    O O O\n"
-                    + "O O O O O O O\n"
-                    + "O _ _ O O O O\n"
-                    + "O O O O O O O\n"
-                    + "    O O O\n"
-                    + "    O O O";
-    assertEquals(model1ToStringAfterMove, view1.toString());
+          + "    O O O\n"
+          + "O O O O O O O\n"
+          + "O _ _ O O O O\n"
+          + "O O O O O O O\n"
+          + "    O O O\n"
+          + "    O O O";
+    assertEquals(englishModelToStringAfterMove, englishView.toString());
 
+    String europeanModelToString =
+            "    O O O\n"
+          + "  O O O O O\n"
+          + "O O O O O O O\n"
+          + "O O O _ O O O\n"
+          + "O O O O O O O\n"
+          + "  O O O O O\n"
+          + "    O O O";
+    assertEquals(europeanModelToString, europeanView.toString());
 
-    String model2ToString =
+    europeanModel.move(3, 1, 3, 3);
+    String europeanModelToStringAfterMove =
+            "    O O O\n"
+          + "  O O O O O\n"
+          + "O O O O O O O\n"
+          + "O _ _ O O O O\n"
+          + "O O O O O O O\n"
+          + "  O O O O O\n"
+          + "    O O O";
+    assertEquals(europeanModelToStringAfterMove, europeanView.toString());
+
+    String triangleModelToString =
+            "    _\n"
+          + "   O O\n"
+          + "  O O O\n"
+          + " O O O O\n"
+          + "O O O O O";
+    assertEquals(triangleModelToString, triangleView.toString());
+
+    triangleModel.move(2, 0, 0, 0);
+    String triangleModelToStringAfterMove =
+            "    O\n"
+          + "   _ O\n"
+          + "  _ O O\n"
+          + " O O O O\n"
+          + "O O O O O";
+    assertEquals(triangleModelToStringAfterMove, triangleView.toString());
+
+    String biggerEnglishViewToString =
             "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "O O O O O O O O O O O O O O O O O O O\n"
-                    + "O O O O O O O O O O O O O O O O O O O\n"
-                    + "O O O O O O O O O O O O O O O O O O O\n"
-                    + "O O O O O O O O O _ O O O O O O O O O\n"
-                    + "O O O O O O O O O O O O O O O O O O O\n"
-                    + "O O O O O O O O O O O O O O O O O O O\n"
-                    + "O O O O O O O O O O O O O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O\n"
-                    + "            O O O O O O O";
-    assertEquals(model2ToString, view2.toString());
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O _ O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O\n"
+          + "            O O O O O O O";
+    assertEquals(biggerEnglishViewToString, biggerEnglishView.toString());
+
+    String biggerEuropeanModelToString =
+            "            O O O O O O O\n"
+          + "          O O O O O O O O O\n"
+          + "        O O O O O O O O O O O\n"
+          + "      O O O O O O O O O O O O O\n"
+          + "    O O O O O O O O O O O O O O O\n"
+          + "  O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O _ O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "O O O O O O O O O O O O O O O O O O O\n"
+          + "  O O O O O O O O O O O O O O O O O\n"
+          + "    O O O O O O O O O O O O O O O\n"
+          + "      O O O O O O O O O O O O O\n"
+          + "        O O O O O O O O O O O\n"
+          + "          O O O O O O O O O\n"
+          + "            O O O O O O O";
+    assertEquals(biggerEuropeanModelToString, biggerEuropeanView.toString());
+
+    String biggerTriangleModelToString =
+            "      _\n"
+          + "     O O\n"
+          + "    O O O\n"
+          + "   O O O O\n"
+          + "  O O O O O\n"
+          + " O O O O O O\n"
+          + "O O O O O O O";
+    assertEquals(biggerTriangleModelToString, biggerTriangleView.toString());
 
 
-    String customizedEmptyModelToString =
+    String customizedEmptyEnglishModelToString =
             "    O O O\n"
-                    + "    O O O\n"
-                    + "O O O O O O O\n"
-                    + "O O O O O O O\n"
-                    + "O O _ O O O O\n"
-                    + "    O O O\n"
-                    + "    O O O";
-    assertEquals(customizedEmptyModelToString, customizedEmptyModel.toString());
+          + "    O O O\n"
+          + "O O O O O O O\n"
+          + "O O O O O O O\n"
+          + "O O _ O O O O\n"
+          + "    O O O\n"
+          + "    O O O";
+    assertEquals(customizedEmptyEnglishModelToString, customizedEmptyEnglishView.toString());
+
+    String customizedEmptyTriangleModelToString =
+            "    O\n"
+          + "   O O\n"
+          + "  O O O\n"
+          + " O O O _\n"
+          + "O O O O O";
+    assertEquals(customizedEmptyTriangleModelToString, customizedEmptyTriangleView.toString());
   }
 
 
@@ -109,9 +218,9 @@ public class MarbleSolitaireTextViewTest {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    StringBuilder expectedSb1 = new StringBuilder();
-    expectedSb1.append("Invalid Move, try again\n");
-    assertEquals(expectedSb1.toString(), this.outputForViewWSB.toString());
+    StringBuilder expectedStringBuilder = new StringBuilder();
+    expectedStringBuilder.append("Invalid Move, try again\n");
+    assertEquals(expectedStringBuilder.toString(), this.outputStringBuilder.toString());
     try {
       this.viewWithStringBuilder.renderMessage("Game quit!\n");
       this.viewWithStringBuilder.renderMessage("State of game when quit:\n");
@@ -119,23 +228,29 @@ public class MarbleSolitaireTextViewTest {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    expectedSb1.append("Game quit!\n");
-    expectedSb1.append("State of game when quit:\n");
-    expectedSb1.append("Score: 30");
+    expectedStringBuilder.append("Game quit!\n");
+    expectedStringBuilder.append("State of game when quit:\n");
+    expectedStringBuilder.append("Score: 30");
+    assertEquals(expectedStringBuilder.toString(), this.outputStringBuilder.toString());
   }
 
   @Test
-  public void testRenderBoard() {
+  public void testRenderBoardToStringBuilder() {
     try {
       this.viewWithStringBuilder.renderBoard();
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    StringBuilder expectedSb2 = new StringBuilder();
-    expectedSb2.append("    O O O\n    O O O\nO O O O O O O\nO O O _ O O O\nO O O O O O O\n    O"
-            + " O O\n    O O O");
-    assertEquals(expectedSb2.toString(), this.outputForViewWSB.toString());
+    StringBuilder expectedStringBuilder = new StringBuilder();
+    expectedStringBuilder.append("    O O O\n"
+                               + "    O O O\n"
+                               + "O O O O O O O\n"
+                               + "O O O _ O O O\n"
+                               + "O O O O O O O\n"
+                               + "    O O O\n"
+                               + "    O O O");
+    assertEquals(expectedStringBuilder.toString(), this.outputStringBuilder.toString());
   }
 
 
@@ -149,14 +264,19 @@ public class MarbleSolitaireTextViewTest {
       e.printStackTrace();
     }
 
-    StringBuilder expectedSb3 = new StringBuilder();
-    expectedSb3.append("    O O O\n    O O O\nO O O O O O O\nO O O _ O O O\nO O O O O O O\n    O"
-            + " O O\n    O O O");
-    expectedSb3.append("\n");
-    expectedSb3.append("Input index to play");
-    assertEquals(expectedSb3.toString(), this.outputForViewWSB.toString());
+    StringBuilder expectedStringBuilder = new StringBuilder();
+    expectedStringBuilder.append("    O O O\n"
+                               + "    O O O\n"
+                               + "O O O O O O O\n"
+                               + "O O O _ O O O\n"
+                               + "O O O O O O O\n"
+                               + "    O O O\n"
+                               + "    O O O");
+    expectedStringBuilder.append("\n");
+    expectedStringBuilder.append("Input index to play");
+    assertEquals(expectedStringBuilder.toString(), this.outputStringBuilder.toString());
 
-    this.model1.move(3, 1, 3, 3);
+    this.englishModel.move(3, 1, 3, 3);
     try {
       this.viewWithStringBuilder.renderBoard();
       this.viewWithStringBuilder.renderMessage("\n");
@@ -164,11 +284,15 @@ public class MarbleSolitaireTextViewTest {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    expectedSb3.append("    O O O\n    O O O\nO O O O O O O\nO _ _ O O O O\nO O O O O O O\n    O"
-            + " O O\n    O O O");
-    expectedSb3.append("\n");
-    expectedSb3.append("You moved one step!");
-    assertEquals(expectedSb3.toString(), this.outputForViewWSB.toString());
-
+    expectedStringBuilder.append("    O O O\n"
+                               + "    O O O\n"
+                               + "O O O O O O O\n"
+                               + "O _ _ O O O O\n"
+                               + "O O O O O O O\n"
+                               + "    O O O\n"
+                               + "    O O O");
+    expectedStringBuilder.append("\n");
+    expectedStringBuilder.append("You moved one step!");
+    assertEquals(expectedStringBuilder.toString(), this.outputStringBuilder.toString());
   }
 }

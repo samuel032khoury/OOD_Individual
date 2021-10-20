@@ -1,8 +1,9 @@
 package cs3500.marblesolitaire.controller;
 
 /**
- * To represent the controller of the MarbleSolitaire game. Users can play a game by calling
- * {@link #playGame}
+ * To represent the controller of the MarbleSolitaire game, aiming to connect the model and the
+ * view. Users can play a game by parse inputs after calling {@link #playGame}. The game playing
+ * depends on specific implementations.
  */
 public interface MarbleSolitaireController {
   /**

@@ -1,7 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 
@@ -41,7 +40,7 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   /**
-   * Generate an input interaction that allows tests to parse (fake) user input.
+   * Generate an input {@link Interaction} that allows tests to parse (fake) user input.
    *
    * @param in the (fake) user input as a String
    * @return an object of an anonymous Interaction subclasses that has the only method of appending
@@ -52,7 +51,7 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   /**
-   * Generate a print interaction that allows tests to expect the output.
+   * Generate a print {@link Interaction} that allows tests to expect the output.
    *
    * @param lines the outputs as a stream of Strings
    * @return an object of an anonymous Interaction subclasses that has the only method of appending
@@ -67,8 +66,9 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   /**
-   * Generate a prompt interaction that allows tests to simulate responding process.
-   * @param prompt a String of prompt
+   * Generate a prompt {@link Interaction} that allows tests to simulate responding process.
+   *
+   * @param prompt   a String of prompt
    * @param response (fake) users input as a String
    * @return an object of an anonymous Interaction subclasses that has the only method of appending
    *               two String to the first and second appendable argument respectfully.
@@ -130,7 +130,7 @@ public class MarbleSolitaireControllerImplTest {
             "O O O O O O O", "    O O O", "    O O O", "Score: 31"));
     this.listOfInteraction.add(prints("Game quit!", "State of game when quit:", "    O O O",
             "    O O O", "O O O O O O O", "O _ _ O O O O", "O O O O O O O", "    O O O",
-          "    O O O", "Score: 31"));
+            "    O O O", "Score: 31"));
 
     this.parseFakeInputAndExpectedOutput();
     this.genController().playGame();
@@ -177,7 +177,52 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   @Test
-  public void testAbruptQuit() {
+  public void testAbruptQuitAtFromRow() {
+    this.listOfInteraction.add(inputs("4 2 4 4"));
+    this.listOfInteraction.add(prints("    O O O", "    O O O", "O O O O O O O", "O _ _ O O O O",
+            "O O O O O O O", "    O O O", "    O O O", "Score: 31"));
+    this.listOfInteraction.add(inputs("q 4 5 4 3"));
+    this.listOfInteraction.add(prints("Game quit!", "State of game when quit:", "    O O O",
+            "    O O O", "O O O O O O O", "O _ _ O O O O", "O O O O O O O", "    O O O",
+            "    O O O", "Score: 31"));
+
+    this.parseFakeInputAndExpectedOutput();
+    this.genController().playGame();
+    assertEquals(this.expectedOutput.toString(), this.actualOutPut.toString());
+  }
+
+  @Test
+  public void testAbruptQuitAtFromCol() {
+    this.listOfInteraction.add(inputs("4 2 4 4"));
+    this.listOfInteraction.add(prints("    O O O", "    O O O", "O O O O O O O", "O _ _ O O O O",
+            "O O O O O O O", "    O O O", "    O O O", "Score: 31"));
+    this.listOfInteraction.add(inputs("4 q 5 4 3"));
+    this.listOfInteraction.add(prints("Game quit!", "State of game when quit:", "    O O O",
+            "    O O O", "O O O O O O O", "O _ _ O O O O", "O O O O O O O", "    O O O",
+            "    O O O", "Score: 31"));
+
+    this.parseFakeInputAndExpectedOutput();
+    this.genController().playGame();
+    assertEquals(this.expectedOutput.toString(), this.actualOutPut.toString());
+  }
+
+  @Test
+  public void testAbruptQuitAtToRow() {
+    this.listOfInteraction.add(inputs("4 2 4 4"));
+    this.listOfInteraction.add(prints("    O O O", "    O O O", "O O O O O O O", "O _ _ O O O O",
+            "O O O O O O O", "    O O O", "    O O O", "Score: 31"));
+    this.listOfInteraction.add(inputs("4 5 q 4 3"));
+    this.listOfInteraction.add(prints("Game quit!", "State of game when quit:", "    O O O",
+            "    O O O", "O O O O O O O", "O _ _ O O O O", "O O O O O O O", "    O O O",
+            "    O O O", "Score: 31"));
+
+    this.parseFakeInputAndExpectedOutput();
+    this.genController().playGame();
+    assertEquals(this.expectedOutput.toString(), this.actualOutPut.toString());
+  }
+
+  @Test
+  public void testAbruptQuitAtToCol() {
     this.listOfInteraction.add(inputs("4 2 4 4"));
     this.listOfInteraction.add(prints("    O O O", "    O O O", "O O O O O O O", "O _ _ O O O O",
             "O O O O O O O", "    O O O", "    O O O", "Score: 31"));
@@ -199,6 +244,22 @@ public class MarbleSolitaireControllerImplTest {
 
     this.parseFakeInputAndExpectedOutput();
     this.genController().playGame();
+  }
+
+  @Test
+  public void testInvalidInputsBeforeMove() {
+    this.listOfInteraction.add(inputs("all these inputs should not be parsed into the controller"));
+    this.listOfInteraction.add(inputs("4 2 4 4"));
+    this.listOfInteraction.add(prints("    O O O", "    O O O", "O O O O O O O", "O _ _ O O O O",
+            "O O O O O O O", "    O O O", "    O O O", "Score: 31"));
+    this.listOfInteraction.add(inputs("q"));
+    this.listOfInteraction.add(prints("Game quit!", "State of game when quit:", "    O O O",
+            "    O O O", "O O O O O O O", "O _ _ O O O O", "O O O O O O O", "    O O O",
+            "    O O O", "Score: 31"));
+
+    this.parseFakeInputAndExpectedOutput();
+    this.genController().playGame();
+    assertEquals(this.expectedOutput.toString(), this.actualOutPut.toString());
   }
 
   @Test
@@ -236,7 +297,7 @@ public class MarbleSolitaireControllerImplTest {
             "O O O O O O O", "    O O O", "    O O O", "Score: 28"));
     this.listOfInteraction.add(prints("    O O O", "    O _ O", "O O O O O O O", "O _ O _ O _ _",
             "O O O _ O O O", "    O O O", "    O O O", "Score: 27"));
-    this.listOfInteraction.add(prints("Game over!", "    O O O","    O _ O", "O O O O O O O",
+    this.listOfInteraction.add(prints("Game over!", "    O O O", "    O _ O", "O O O O O O O",
             "O _ O _ O _ _", "O O O O O O O", "    O _ O", "    O _ O", "Score: 26"));
 
 
@@ -246,7 +307,7 @@ public class MarbleSolitaireControllerImplTest {
 
   }
 
-  @Test (expected = IllegalStateException.class)
+  @Test(expected = IllegalStateException.class)
   public void testIllegalStateWhenIOException() {
     this.actualOutPut = new FakeAppendable();
     this.textView = new MarbleSolitaireTextView(model, actualOutPut);
@@ -264,7 +325,7 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   @Test
-  public void testInputs1() throws IOException {
+  public void testInputs1() {
     this.listOfInteraction.add(inputs("4 2 -1 4 4"));
     this.listOfInteraction.add(inputs("q"));
 
@@ -278,7 +339,7 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   @Test
-  public void testInputs2() throws IOException {
+  public void testInputs2() {
     this.listOfInteraction.add(inputs("4 2 q 4 4"));
 
     this.parseFakeInputAndExpectedOutput();
@@ -291,7 +352,7 @@ public class MarbleSolitaireControllerImplTest {
   }
 
   @Test
-  public void testInputs3() throws IOException {
+  public void testInputs3() {
     this.listOfInteraction.add(inputs("4 2 4 4 should not log this seq -13239487 31 41 51 61"));
     this.listOfInteraction.add(inputs("q"));
 
@@ -302,6 +363,6 @@ public class MarbleSolitaireControllerImplTest {
 
     this.genController().playGame();
     assertEquals("fromRow = 3, fromCol = 1, toRow = 3, toCol = 3\n"
-                + "fromRow = 30, fromCol = 40, toRow = 50, toCol = 60\n", log.toString());
+            + "fromRow = 30, fromCol = 40, toRow = 50, toCol = 60\n", log.toString());
   }
 }
