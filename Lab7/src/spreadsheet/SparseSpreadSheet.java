@@ -14,14 +14,18 @@ public class SparseSpreadSheet implements SpreadSheet {
   private int width;
   private int height;
 
+  /**
+   * To initialize and construct a blank {@link SparseSpreadSheet}.
+   */
   public SparseSpreadSheet() {
     this.sheet = new HashMap<CellPosition,Double>();
     this.width = 0;
     this.height = 0;
   }
+
   @Override
   public double get(int row, int col) throws IllegalArgumentException {
-    if ((row<0) || (col<0)) {
+    if ((row < 0) || (col < 0)) {
       throw new IllegalArgumentException("Row or column cannot be negative");
     }
     return this.sheet.getOrDefault(new CellPosition(row,col),0.0);
@@ -29,22 +33,22 @@ public class SparseSpreadSheet implements SpreadSheet {
 
   @Override
   public void set(int row, int col,double value) throws IllegalArgumentException {
-    if ((row<0) || (col<0)) {
+    if ((row < 0) || (col < 0)) {
       throw new IllegalArgumentException("Row or column cannot be negative");
     }
     this.sheet.put(new CellPosition(row,col),value);
-    if ((row+1)>height) {
-      height = row+1;
+    if ((row + 1) > height) {
+      height = row + 1;
     }
 
-    if ((col+1)>width) {
+    if ((col + 1) > width) {
       width = col + 1;
     }
   }
 
   @Override
   public boolean isEmpty(int row, int col) throws IllegalArgumentException {
-    if ((row<0) || (col<0)) {
+    if ((row < 0) || (col < 0)) {
       throw new IllegalArgumentException("Row or column cannot be negative");
     }
     return !this.sheet.containsKey(new CellPosition(row,col));
@@ -71,14 +75,14 @@ public class SparseSpreadSheet implements SpreadSheet {
 
     @Override
     public boolean equals(Object o) {
-      if (this==o) {
+      if (this == o) {
         return true;
       }
       if (!(o instanceof CellPosition)) {
         return false;
       }
       CellPosition other = (CellPosition)o;
-      return this.row==other.row && this.column==other.column;
+      return this.row == other.row && this.column == other.column;
     }
 
     @Override

@@ -1,8 +1,16 @@
 import spreadsheet.SpreadSheet;
 
+/**
+ * To represent a class that confirms the inputs from controller are correctly parsed to methods
+ * that using those inputs.
+ */
 public class ConfirmControllerInput implements SpreadSheet {
   StringBuilder log;
 
+  /**
+   * Generate a {link ConfirmControllerInput} for testing the correctness of input.
+   * @param log a StringBuilder to store the input log
+   */
   public ConfirmControllerInput(StringBuilder log) {
     this.log  = log;
   }

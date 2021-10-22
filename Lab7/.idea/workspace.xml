@@ -2,24 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a640b53-4f81-4255-8658-f71d17228c91" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Lab7.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/ConfirmControllerInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/SparseSpreadSheetTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/spreadsheet/BetterSpreadSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab7/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab7/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab7/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab7/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab7/Downloads.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/MockSpreadSheet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SparseSpreadSheet$CellPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SparseSpreadSheet$CellPosition.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SparseSpreadSheet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SparseSpreadSheet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SpreadSheetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SpreadSheetController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Lab7/SpreadSheetControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SpreadSheetProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Lab7/spreadsheet/SpreadSheetProgram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Lab7/ConfirmControllerInput.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Lab7/ConfirmControllerInput.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Lab7/SparseSpreadSheetTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Lab7/SparseSpreadSheetTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spreadsheet/SparseSpreadSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spreadsheet/SparseSpreadSheet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spreadsheet/SpreadSheetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spreadsheet/SpreadSheetController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/spreadsheet/SpreadSheetProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spreadsheet/SpreadSheetProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ConfirmControllerInput.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/ConfirmControllerInput.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/SparseSpreadSheetTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/SparseSpreadSheetTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../test.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,32 +51,44 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected="JUnit.SparseSpreadSheetTest.testInputForSet">
+  <component name="RunManager" selected="JUnit.SparseSpreadSheetTest">
+    <configuration name="SpreadSheetProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="spreadsheet.SpreadSheetProgram" />
+      <module name="Lab7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="spreadsheet.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SparseSpreadSheetTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab7" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SparseSpreadSheetTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SparseSpreadSheetTest.testBulkInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lab7" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SparseSpreadSheetTest" />
+      <option name="METHOD_NAME" value="testBulkInput" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SparseSpreadSheetTest.testFarewell" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Lab7" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="SparseSpreadSheetTest" />
       <option name="METHOD_NAME" value="testFarewell" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SparseSpreadSheetTest.testInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab7" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SparseSpreadSheetTest" />
-      <option name="METHOD_NAME" value="testInput" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SparseSpreadSheetTest.testInputForIsEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab7" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SparseSpreadSheetTest" />
-      <option name="METHOD_NAME" value="testInputForIsEmpty" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -97,23 +104,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SparseSpreadSheetTest.testWelcome" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lab7" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="SparseSpreadSheetTest" />
-      <option name="METHOD_NAME" value="testWelcome" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SparseSpreadSheetTest.testInputForSet" />
-        <item itemvalue="JUnit.SparseSpreadSheetTest.testInputForIsEmpty" />
-        <item itemvalue="JUnit.SparseSpreadSheetTest.testInput" />
-        <item itemvalue="JUnit.SparseSpreadSheetTest.testWelcome" />
+        <item itemvalue="JUnit.SparseSpreadSheetTest" />
+        <item itemvalue="JUnit.SparseSpreadSheetTest.testBulkInput" />
         <item itemvalue="JUnit.SparseSpreadSheetTest.testFarewell" />
+        <item itemvalue="Application.SpreadSheetProgram" />
+        <item itemvalue="JUnit.SparseSpreadSheetTest.testInputForSet" />
       </list>
     </recent_temporary>
   </component>
@@ -125,7 +122,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1634851673302</updated>
-      <workItem from="1634851679360" duration="3058000" />
+      <workItem from="1634851679360" duration="9287000" />
+      <workItem from="1634863583044" duration="542000" />
     </task>
     <servers />
   </component>
@@ -142,5 +140,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
